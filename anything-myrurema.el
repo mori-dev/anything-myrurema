@@ -68,7 +68,7 @@
       (switch-to-buffer buf)))
 
 (defun anything-myrurema-rurema-search (candidate)
-    (browse-url (format "http://rurema.clear-code.com/query:%s/" candidate)))
+    (browse-url (format "http://rurema.clear-code.com/query:%s/" (url-hexify-string candidate))))
 
 (defun anything-myrurema ()
   "anything myrurema"
