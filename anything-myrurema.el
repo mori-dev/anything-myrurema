@@ -57,15 +57,14 @@
     "can't find \"rurema\" command")))
 
 (defun anything-myrurema-show-rurema (candidate)
-    (let ((docstring (anything-myrurema-get-docstring candidate))
-           (buf (get-buffer-create "*rurema-result*")))
-      (with-current-buffer buf
-        (erase-buffer)
-        (insert docstring)
-        (goto-char (point-min))
-        (delete-region (point) (save-excursion (end-of-line) (point)))
-        (delete-blank-lines))
-      (switch-to-buffer buf)))
+    (let ((bufname (format "*rurema-result:%s*" candidate)))
+      (unless (get-buffer bufname)
+        (with-current-buffer (get-buffer-create bufname)
+          (insert (anything-myrurema-get-docstring candidate))
+          (goto-char (point-min))
+          (delete-region (point) (save-excursion (end-of-line) (point)))
+          (delete-blank-lines)))
+      (switch-to-buffer bufname)))
 
 (defun anything-myrurema-rurema-search (candidate)
     (browse-url (format "http://rurema.clear-code.com/query:%s/" (url-hexify-string candidate))))
