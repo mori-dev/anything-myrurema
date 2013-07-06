@@ -65,7 +65,7 @@
         (goto-char (point-min))
         (delete-region (point) (save-excursion (end-of-line) (point)))
         (delete-blank-lines))
-      (switch-to-buffer buf)))
+      (display-buffer buf)))
 
 (defun anything-myrurema-rurema-search (candidate)
     (browse-url (format "http://rurema.clear-code.com/query:%s/" (url-hexify-string candidate))))
